@@ -1,0 +1,17 @@
+.colorChange {
+  color: #0074e4;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btnTabLogs {
+  width: 50%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #0074e4;
+  color: #fff;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
