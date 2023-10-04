@@ -1,0 +1,12 @@
+.sideArticleContainer {
+  width: 20%;
+  height: 400px;
+  background-color: rgba(0, 31, 63, 0.88);
+  border-radius: 10px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,5 +1,6 @@
 import SideNavCompo from "../../Components/SideNavContainer/SideNavCompo";
 import NavBar from "../../Components/NavBar/NavBar";
+import ArticleSidesContainer from "../../Components/SideArticles/ArticleSidesContainer";
 import "./Home.css";
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
     <div>
       <NavBar />
       <SideNavCompo />
+      <ArticleSidesContainer />
     </div>
   );
 }
