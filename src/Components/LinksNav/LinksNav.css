@@ -1,0 +1,19 @@
+.linkContainer {
+  width: 80%;
+  height: 40px;
+  border: 2px solid #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.linkContainer:hover {
+  background-color: #0074e4;
+  border: none;
+}
+
+.linkContainer p {
+  color: #fff;
+  font-weight: 400;
+}
