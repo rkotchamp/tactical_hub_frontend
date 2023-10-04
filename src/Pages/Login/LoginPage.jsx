@@ -6,6 +6,7 @@ function LoginPage() {
     <div>
       <div className="loginContainer">
         <div className="loginContent">
+          <h1>Login Form</h1>
           <Login />
         </div>
       </div>

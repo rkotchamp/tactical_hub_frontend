@@ -3,3 +3,6 @@
   font-size: 12px;
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+}
