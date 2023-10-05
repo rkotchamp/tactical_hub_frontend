@@ -1,3 +1,5 @@
+import "./Button.css";
+
 function Button({ type, NewclassName, text }) {
   return (
     <div>

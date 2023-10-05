@@ -1,3 +1,4 @@
+import AvatarProfile from "../AvatarProfile/AvatarProfile";
 import avatar from "../../assets/profile.jpg";
 import SearchBar from "../searchBar/SearchBar";
 
@@ -14,9 +15,10 @@ function NavBar() {
             <li>Create Post</li>
           </ul>
         </nav>
-        <div className="profile">
+        {/* <div className="profile">
           <img src={avatar} alt="" />
-        </div>
+        </div> */}
+        <AvatarProfile avatar={avatar} />
       </div>
     </div>
   );
