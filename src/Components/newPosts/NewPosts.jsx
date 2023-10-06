@@ -13,6 +13,7 @@ function NewPosts() {
           className="PostInput"
         />
       </form>
+      <div className="textContent"></div>
     </div>
   );
 }
