@@ -15,6 +15,7 @@ function Home() {
           <NewPosts />
           <div className="articlePosts">
             <Posts />
+            <Posts />
           </div>
         </div>
         <ArticleSidesContainer />

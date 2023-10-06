@@ -11,3 +11,9 @@ body {
   width: 35%;
   margin-top: 35px;
 }
+
+.articlePosts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
