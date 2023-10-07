@@ -3,6 +3,7 @@ import RegisterPage from "../src/Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/Login/LoginPage";
 import ForgotPasswordPage from "./Pages/Forgot Password/ForgotPasswordPage";
 import Home from "../src/Pages/HomePage/Home";
+import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );

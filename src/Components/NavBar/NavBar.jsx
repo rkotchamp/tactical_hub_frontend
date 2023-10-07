@@ -1,6 +1,7 @@
 import AvatarProfile from "../AvatarProfile/AvatarProfile";
 import avatar from "../../assets/profile.jpg";
 import SearchBar from "../searchBar/SearchBar";
+import { Link } from "react-router-dom";
 
 import "./NavBar.css";
 
@@ -18,7 +19,9 @@ function NavBar() {
         {/* <div className="profile">
           <img src={avatar} alt="" />
         </div> */}
-        <AvatarProfile avatar={avatar} />
+        <Link to="/profile">
+          <AvatarProfile avatar={avatar} />
+        </Link>
       </div>
     </div>
   );

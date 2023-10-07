@@ -1,0 +1,67 @@
+.profile__Info__Container {
+  width: 80%;
+  height: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.main_page_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.image__Avatar__Container {
+  width: 180px;
+  aspect-ratio: 1;
+  background-color: #d0d0d0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__profile {
+  width: 160px;
+  aspect-ratio: 1;
+  background-color: #d0d0d0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__profile img {
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.bio {
+  text-align: justify;
+}
+
+.user__Info {
+  width: 50%;
+}
+
+.rank__institution {
+  display: flex;
+  gap: 13px;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.user__posts__container {
+  width: 80%;
+  height: 57vh;
+  background-color: #fff;
+}
