@@ -12,7 +12,9 @@ function NavBar() {
       <div className="navAndProfile">
         <nav>
           <ul>
-            <li>Explore</li>
+            <Link to="/home">
+              <li>Explore</li>
+            </Link>
             <li>Create Post</li>
           </ul>
         </nav>

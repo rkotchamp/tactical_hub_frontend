@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import Button from "../../Button/Button";
 import { FaCloudUploadAlt, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from "react";
+import { storage } from "../../../services/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
 import "./editProfileCompo.css";
 
@@ -9,15 +12,46 @@ function EditProfileCompo() {
   //Hooks
   const [imageSelected, setImageSelected] = useState("Upload an Image");
   const [uploadIcon, setUploadIcon] = useState(true);
+  const [imageUpload, setImageUpload] = useState(null);
   //   const [deleteUpload, setDeleteUpload] = useState(false);
   const form = useForm();
   const { register, handleSubmit } = form;
 
   //Methods
 
-  const handleForm = (data) => {
-    console.log(data);
+  const handleImageUpload = (data) => {
+    if (data.first_name === "") {
+      delete data.first_name;
+    }
+    if (data.last_name === "") {
+      delete data.last_name;
+    }
+    if (data.profile_image.length == 0) {
+      delete data.profile_image;
+    }
+
+    if (Object.keys(data).length > 0) {
+      if (data.profile_image !== undefined && data.profile_image[0]) {
+        const imageName = data.profile_image[0];
+        const imageRef = ref(storage, `${imageName.name + v4()}`);
+        uploadBytes(imageRef, imageName).then(() => {
+          getDownloadURL(imageRef).then((url) => {
+            data.profile_image[0].name = url;
+          });
+        });
+      }
+    }
+    // if (imageUpload == null) return;
+    // const imageRef = ref(storage, `/${imageUpload.name + v4()}`);
+    // uploadBytes(imageRef, imageUpload).then(() => {
+    //   console.log("sent file");
+    // });
+    console.log(data.profile_image[0].name);
   };
+
+  // const handleForm = (data) => {
+  //   console.log(data);
+  // };
 
   const handleImageSelected = (e) => {
     const fileInput = e.target;
@@ -42,7 +76,7 @@ function EditProfileCompo() {
 
   return (
     <div className="edit__form_input_container">
-      <form onSubmit={handleSubmit(handleForm)} className="formInput">
+      <form onSubmit={handleSubmit(handleImageUpload)} className="formInput">
         <div>
           <input
             type="text"
