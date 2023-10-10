@@ -5,6 +5,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import PostsOnProfilePage from "../../Components/PostsOnProfilePage/PostsOnProfilePage";
 import policing from "../../assets/articlesImage.jpg";
 import addPlus from "../../assets/plus.png";
+import { Link } from "react-router-dom";
 
 import "./ProfilePage.css";
 
@@ -42,7 +43,9 @@ function ProfilePage() {
               on a tactical ground .Work as i work and move and i move
             </p>
           </div>
-          <AiTwotoneEdit />
+          <Link to="/edit-profile">
+            <AiTwotoneEdit />
+          </Link>
         </div>
 
         <div className="user__posts__container">
@@ -69,7 +72,11 @@ function ProfilePage() {
               <PostsOnProfilePage svgImg={addPlus} />
             </div>
           )}
-          {toggleSave && <div className="usersSaved">Save</div>}
+          {toggleSave && (
+            <div className="usersSaved">
+              <PostsOnProfilePage img={policing} />
+            </div>
+          )}
         </div>
       </div>
     </div>
