@@ -2,16 +2,44 @@ import { useForm } from "react-hook-form";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
+import Cookies from "js-cookie";
+import { useContext, useState } from "react";
+import UserContext from "../../contexts/userContext";
 
 import "./Login.css";
 
 function Login() {
+  //UseForm
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
+  //useContext
+  const { setUser } = useContext(UserContext);
+
   const loginUser = (data) => {
-    api.post("/users/login", data).then((response) => console.log(response));
+    api.post("/users/login", data).then((response) => {
+      if (response.status === 200) {
+        Cookies.setItem("user_token", response.data.token);
+        let config = {
+          headers: {
+            Authorization: "Bearer" + response.data.token,
+          },
+        };
+
+        api.get("/users", config).then((res) => {
+          if (res.status === 200) {
+            setUser(res.data);
+          }
+        });
+      }
+    });
+
+    // api.get("/users", config).then((res) => {
+    //   if (res.status === 200) {
+    //     setUser(res.data);
+    //   }
+    // });
   };
   return (
     <div>
