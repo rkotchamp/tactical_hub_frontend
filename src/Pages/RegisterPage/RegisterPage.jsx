@@ -13,8 +13,7 @@ function RegisterPage() {
           <Register />
         </div>
         <h1 className="boldText">
-          Be <br />
-          Confidential!
+          <span>Be</span> Confidential!
         </h1>
       </div>
     </div>

@@ -66,4 +66,95 @@
   justify-content: center;
 }
 
-/* login */
+/* Extra small size screens  */
+@media only screen and (max-width: 600px) {
+  .registerContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .containLogs {
+    width: 80%;
+  }
+  .boldText {
+    display: none;
+  }
+}
+
+/* portrait tablets and phones */
+
+@media only screen and (min-width: 600px) {
+  .registerContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+  }
+  .containLogs {
+    width: 80%;
+    height: 80%;
+  }
+  .boldText {
+    display: none;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .containLogs h1 {
+    font-size: 30px;
+  }
+
+  .btnTab {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* lanscape tablets and phones */
+@media only screen and (min-width: 768px) {
+  .registerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .containLogs {
+    width: 40%;
+    height: 60%;
+    padding: 10px 0px;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+  }
+  .btnTab {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .containLogs h1 {
+    font-size: 20px;
+  }
+  .boldText {
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
