@@ -3,3 +3,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --mainColor: rgb(0, 31, 63, 0.88);
+  --accentColor: #0074e4;
+  --textColor: #fff;
+  --lightGrays: #d9d9d9;
+}

@@ -20,3 +20,10 @@
   margin: initial;
   padding: initial;
 }
+
+@media only screen and (max-width: 600px) {
+  .Posts__On__Profile__Page__container {
+    width: 150px;
+    height: 100px;
+  }
+}

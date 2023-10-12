@@ -39,3 +39,12 @@
   color: #fff;
   border: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .edit__contents {
+    width: 80%;
+  }
+  .editBtn {
+    font-size: 13px;
+  }
+}
