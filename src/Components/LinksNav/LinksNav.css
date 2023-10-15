@@ -18,8 +18,28 @@
   font-weight: 400;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .linkContainer {
     display: none;
   }
 }
+/* @media only screen and (min-width: 768px) {
+  .linkContainer {
+    width: 80%;
+    height: 20px;
+    border: 2px solid #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .linkContainer p {
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+  }
+  .linkContainer:active {
+    background-color: #0074e4;
+    border: none;
+  }
+} */

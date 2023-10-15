@@ -15,3 +15,15 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.btnCancel {
+  width: 50%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #ff6e6e;
+  color: #fff;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

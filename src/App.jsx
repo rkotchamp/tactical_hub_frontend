@@ -5,6 +5,7 @@ import ForgotPasswordPage from "./Pages/Forgot Password/ForgotPasswordPage";
 import Home from "../src/Pages/HomePage/Home";
 import EditProfile from "../src/Pages/Edit/EditProfile";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
+import CreatePost from "./Pages/CreatePostPage/CreatePost";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/create-post" element={<CreatePost />} />
       </Routes>
     </>
   );

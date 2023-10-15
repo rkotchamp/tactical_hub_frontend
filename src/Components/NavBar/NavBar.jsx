@@ -4,11 +4,17 @@ import avatar from "../../assets/profile.jpg";
 import SearchBar from "../searchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useState } from "react";
 
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar({ setCreatePost }) {
   const navRef = useRef();
+  const [createPost, setCreatePost] = useState(false);
+
+  const handlePopUp = () => {
+    setCreatePost(true);
+  };
 
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
@@ -23,7 +29,7 @@ function NavBar() {
             <Link to="/home">
               <li>Explore</li>
             </Link>
-            <li>Create Post</li>
+            <li onClick={handlePopUp}>Create Post</li>
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
               <FaTimes />
             </button>

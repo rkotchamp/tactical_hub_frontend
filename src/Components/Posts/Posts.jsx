@@ -5,19 +5,22 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { FaShare, FaRegComment } from "react-icons/fa";
 import { AiTwotoneLike } from "react-icons/ai";
 import { CiBookmark } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import "./Posts.css";
 
 function Posts() {
   return (
     <div className="postContainer">
       <div className="imageAndName">
-        <div className="postsProfile">
-          <AvatarProfile avatar={policeOfficer} />
-          <div className="nameAndInstitution">
-            <h5>Sgt. George Sam</h5>
-            <p>German Air Force</p>
+        <Link to="/profile">
+          <div className="postsProfile">
+            <AvatarProfile avatar={policeOfficer} />
+            <div className="nameAndInstitution">
+              <h5>Sgt. George Sam</h5>
+              <p>German Air Force</p>
+            </div>
           </div>
-        </div>
+        </Link>
         <SlOptionsVertical />
       </div>
       <div className="articleImages">
