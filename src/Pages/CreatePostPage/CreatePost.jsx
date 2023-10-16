@@ -5,11 +5,14 @@ import Button from "../../Components/Button/Button";
 import { Link } from "react-router-dom";
 import "./CreatePost.css";
 
-function CreatePost() {
+function CreatePost({ closeModal }) {
   //   const [register] = useForm();
   return (
     <div className="create__post__container">
       <div className="main__post__body">
+        <button className="exit" onClick={closeModal}>
+          &times;
+        </button>
         <h2 className="main__Text">Create a new Post</h2>
         <form action="">
           <div>
@@ -48,13 +51,15 @@ function CreatePost() {
                 type="Submit"
               />
             </div>
-            <Link to="/home">
-              <div>
-                <Button text="Cancel" NewclassName="btnCancelPost" />
-              </div>
-            </Link>
           </div>
         </form>
+        {/* <div>
+          <Button
+            text="Cancel"
+            NewclassName="btnCancelPost"
+            onClick={closeModal}
+          />
+        </div> */}
       </div>
     </div>
   );

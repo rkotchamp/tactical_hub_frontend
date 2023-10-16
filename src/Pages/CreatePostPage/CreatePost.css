@@ -18,6 +18,7 @@
   width: 60%;
   height: 60vh;
   background-color: #fff;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,6 +85,16 @@
   margin-bottom: 10px;
 }
 
+.exit {
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  top: 4rem;
+  right: 13rem;
+  position: fixed;
+}
 /* .navAndProfile nav {
     position: fixed;
     top: 0;

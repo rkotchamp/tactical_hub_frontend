@@ -10,11 +10,6 @@ import "./NavBar.css";
 
 function NavBar({ setCreatePost }) {
   const navRef = useRef();
-  const [createPost, setCreatePost] = useState(false);
-
-  const handlePopUp = () => {
-    setCreatePost(true);
-  };
 
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
@@ -29,7 +24,7 @@ function NavBar({ setCreatePost }) {
             <Link to="/home">
               <li>Explore</li>
             </Link>
-            <li onClick={handlePopUp}>Create Post</li>
+            <li onClick={setCreatePost}>Create Post</li>
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
               <FaTimes />
             </button>
