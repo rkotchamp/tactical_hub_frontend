@@ -14,7 +14,7 @@ function NewPosts({ openModalUp }) {
           onClick={openModalUp}
         />
       </form>
-      <div className="textContent"></div>
+      {/* <div className="textContent"></div> */}
     </div>
   );
 }

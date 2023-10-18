@@ -21,6 +21,7 @@ function Login() {
   const { setUser } = useContext(UserContext);
 
   const loginUser = (data) => {
+    console.log(data);
     api
       .post("/users/login", data)
       .then((response) => {
