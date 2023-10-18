@@ -20,6 +20,6 @@
   overflow: hidden;
 }
 .PostInput:focus {
-  border: 3px solid #1183d6;
+  border: 3px solid #d9d9d9;
   outline: none;
 }

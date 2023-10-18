@@ -5,7 +5,7 @@ import api from "../../api/api";
 import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/userContext";
-
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -14,32 +14,46 @@ function Login() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
+  ///Routs
+  const navigate = useNavigate();
+
   //useContext
   const { setUser } = useContext(UserContext);
 
   const loginUser = (data) => {
-    api.post("/users/login", data).then((response) => {
-      if (response.status === 200) {
-        Cookies.setItem("user_token", response.data.token);
-        let config = {
-          headers: {
-            Authorization: "Bearer" + response.data.token,
-          },
-        };
+    api
+      .post("/users/login", data)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data.token);
+          Cookies.set("user_token", response.data.token);
+          let config = {
+            headers: {
+              Authorization: "Bearer " + response.data.token,
+            },
+          };
 
-        api.get("/users", config).then((res) => {
-          if (res.status === 200) {
-            setUser(res.data);
-          }
-        });
-      }
-    });
-
-    // api.get("/users", config).then((res) => {
-    //   if (res.status === 200) {
-    //     setUser(res.data);
-    //   }
-    // });
+          api
+            .get("/users", config)
+            .then((res) => {
+              if (res.status === 200) {
+                console.log(res.data);
+                setUser(res.data);
+                navigate("/home");
+              } else {
+                console.error("Error while fetching data".res.status);
+              }
+            })
+            .catch((err) => {
+              console.error("Error during data request", err);
+            });
+        } else {
+          console.error("Login Failed", response.status);
+        }
+      })
+      .catch((err) => {
+        console.error("Login request Error", err);
+      });
   };
   return (
     <div>

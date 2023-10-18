@@ -1,17 +1,23 @@
+import { useState, useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 import NavBar from "../../Components/NavBar/NavBar";
 import profile from "../../../src/assets/profile.jpg";
-import { useState } from "react";
 import { AiTwotoneEdit } from "react-icons/ai";
 import PostsOnProfilePage from "../../Components/PostsOnProfilePage/PostsOnProfilePage";
 import policing from "../../assets/articlesImage.jpg";
 import addPlus from "../../assets/plus.png";
 import { Link } from "react-router-dom";
+import CreatePost from "../CreatePostPage/CreatePost";
+import Avatar from "@mui/material/Avatar";
 
 import "./ProfilePage.css";
 
 function ProfilePage() {
   const [togglePost, setTogglePost] = useState(true);
   const [toggleSave, setToggleSave] = useState(false);
+  const [openModalProfile, setOpenModalProfile] = useState(false);
+
+  const { user } = useContext(UserContext);
 
   const handleTogglePost = () => {
     setTogglePost(true);
@@ -21,14 +27,28 @@ function ProfilePage() {
     setToggleSave(true);
     setTogglePost(false);
   };
+
+  const openModalPop = () => {
+    setOpenModalProfile(true);
+  };
+  const closeModalPop = () => {
+    setOpenModalProfile(false);
+  };
   return (
     <div className="profileContainer">
-      <NavBar />
+      {openModalProfile && <CreatePost closeModal={closeModalPop} />}
+      <NavBar setCreatePost={openModalPop} />
+      {/* <NavBar /> */}
       <div className="main_page_content">
+        {/* {openModalProfile && <CreatePost />} */}
         <div className="profile__Info__Container">
           <div className="image__Avatar__Container">
             <div className="main__profile">
-              <img src={profile} alt="" />
+              {/* <img src={profile} alt="" /> */}
+              <Avatar
+                sx={{ width: 160, height: 160 }}
+                src={profile ? profile : null}
+              />
             </div>
           </div>
 

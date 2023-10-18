@@ -18,7 +18,6 @@ function Home() {
 
   const closModal = () => {
     setModalVisible(false);
-    console.log(modalVisible);
   };
 
   return (
@@ -28,7 +27,7 @@ function Home() {
       <div className="homeContainer">
         <SideNavCompo />
         <div className="post">
-          <NewPosts />
+          <NewPosts openModalUp={openModal} />
           <div className="articlePosts">
             <Posts />
             <Posts />

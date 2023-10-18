@@ -69,6 +69,7 @@ li:hover {
     background-color: var(--mainColor);
     transition: 1s;
     transform: translateY(-100vh);
+    z-index: 100;
   }
 
   .navAndProfile .responsive_nav {
