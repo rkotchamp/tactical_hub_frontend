@@ -44,11 +44,11 @@ function ProfilePage() {
         <div className="profile__Info__Container">
           <div className="image__Avatar__Container">
             <div className="main__profile">
-              {/* <img src={profile} alt="" /> */}
-              <Avatar
+              <img src={profile} alt="" />
+              {/* <Avatar
                 sx={{ width: 160, height: 160 }}
                 src={profile ? profile : null}
-              />
+              /> */}
             </div>
           </div>
 

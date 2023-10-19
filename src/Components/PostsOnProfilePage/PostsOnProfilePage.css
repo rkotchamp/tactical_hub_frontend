@@ -27,3 +27,19 @@
     height: 100px;
   }
 }
+@media only screen and (max-width: 768px) {
+  .Posts__On__Profile__Page__container {
+    width: 170px;
+    height: 120px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Posts__On__Profile__Page__container {
+    width: 170px;
+    height: 120px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+}
