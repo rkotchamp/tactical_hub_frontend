@@ -5,10 +5,15 @@ import api from "../../api/api";
 import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/userContext";
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
+  //useContext
+  const { setUser } = useContext(UserContext);
+  const { setIsAuthenticated } = useContext(AuthContext);
+
   //UseForm
   const form = useForm();
   const { register, handleSubmit, formState } = form;
@@ -17,16 +22,11 @@ function Login() {
   ///Routs
   const navigate = useNavigate();
 
-  //useContext
-  const { setUser } = useContext(UserContext);
-
   const loginUser = (data) => {
-    console.log(data);
     api
       .post("/users/login", data)
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data.token);
           Cookies.set("user_token", response.data.token);
           let config = {
             headers: {
@@ -38,8 +38,9 @@ function Login() {
             .get("/users", config)
             .then((res) => {
               if (res.status === 200) {
-                console.log(res.data);
                 setUser(res.data);
+                setIsAuthenticated(true);
+                Cookies.get("user_token");
                 navigate("/home");
               } else {
                 console.error("Error while fetching data".res.status);

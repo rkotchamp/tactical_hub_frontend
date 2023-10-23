@@ -1,11 +1,13 @@
 import AvatarProfile from "../AvatarProfile/AvatarProfile";
-import avatar from "../../assets/profile.jpg";
+import { useContext } from "react";
+import UserContext from "../../contexts/userContext";
 import "./NewPosts.css";
 
 function NewPosts({ openModalUp }) {
+  const { user } = useContext(UserContext);
   return (
     <div className="newPostContainer">
-      <AvatarProfile avatar={avatar} />
+      <AvatarProfile avatar={user ? user?.profile_image : null} />
       <form action="">
         <textarea
           type="text"

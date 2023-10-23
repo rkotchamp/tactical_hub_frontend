@@ -78,26 +78,32 @@ function Register() {
             type="text"
             placeholder="Service Rank"
             className="input"
-            {...register("service_rank")}
+            {...register("service_rank", { required: "Enter your rank" })}
           />
+          <p className="errorParagraph">{errors.service_rank?.message}</p>
         </div>
         <div>
           <input
             type="text"
             placeholder="Institution"
             className="input"
-            {...register("institution")}
+            {...register("institution", { required: "Enter your institution" })}
           />
+          <p className="errorParagraph">{errors.institution?.message}</p>
         </div>
-        <Button
-          type="submit"
-          NewclassName="btnTab"
-          text="Register"
-          // onClick={handleReceipt}
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Department"
+            className="input"
+            {...register("department", { required: "Enter your department" })}
+          />
+          <p className="errorParagraph">{errors.department?.message}</p>
+        </div>
+        <Button type="submit" NewclassName="btnTab" text="Register" />
       </form>
 
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
       <p className="text">
         Already have an account?
         <Link to="/login">

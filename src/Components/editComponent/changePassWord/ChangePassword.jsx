@@ -18,9 +18,9 @@ function ChangePassword() {
         <div>
           <input
             type="password"
-            placeholder="old password"
+            placeholder="current password"
             className="inputField"
-            {...register("old_password", {
+            {...register("current_password", {
               required: "Enter your old password",
             })}
           />

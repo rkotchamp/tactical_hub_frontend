@@ -5,12 +5,15 @@ import App from "./App.jsx";
 import "./index.css";
 
 import { UserContextProvider } from "./contexts/userContext.jsx";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>

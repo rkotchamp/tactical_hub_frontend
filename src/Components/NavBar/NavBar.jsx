@@ -1,20 +1,21 @@
-import { useRef } from "react";
+import { useRef, useContext, useState } from "react";
 import AvatarProfile from "../AvatarProfile/AvatarProfile";
 import avatar from "../../assets/profile.jpg";
 import SearchBar from "../searchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import UserContext from "../../contexts/UserContext";
 
 import "./NavBar.css";
 
 function NavBar({ setCreatePost }) {
+  const { user } = useContext(UserContext);
   const navRef = useRef();
 
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
-    console.log("great");
   };
+
   return (
     <div className="navContainer">
       <SearchBar />
@@ -34,7 +35,7 @@ function NavBar({ setCreatePost }) {
           <img src={avatar} alt="" />
         </div> */}
         <Link to="/profile">
-          <AvatarProfile avatar={avatar} />
+          <AvatarProfile avatar={user ? user?.profile_image : null} />
         </Link>
         <button className="nav-btn " onClick={showNavBar}>
           <FaBars />

@@ -45,7 +45,7 @@
 }
 
 .main__profile img {
-  width: 160px;
+  width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
   top: 0;

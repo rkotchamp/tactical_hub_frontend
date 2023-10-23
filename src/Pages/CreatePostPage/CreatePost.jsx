@@ -80,8 +80,6 @@ function CreatePost({ closeModal }) {
           </div>
           <div>
             <textarea
-              name=""
-              id=""
               cols="30"
               rows="10"
               placeholder="Create a post"

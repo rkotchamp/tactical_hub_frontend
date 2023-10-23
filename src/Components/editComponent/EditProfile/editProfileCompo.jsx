@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
 import Button from "../../Button/Button";
 import { FaCloudUploadAlt, FaRegTrashAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { storage } from "../../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import UserContext from "../../../contexts/userContext";
+import api from "../../../api/api";
+import { useNavigate } from "react-router-dom";
 
 import "./editProfileCompo.css";
 
@@ -13,17 +16,25 @@ function EditProfileCompo() {
   const [imageSelected, setImageSelected] = useState("Upload an Image");
   const [uploadIcon, setUploadIcon] = useState(true);
   const [imageUpload, setImageUpload] = useState(null);
+
+  const navigate = useNavigate();
   //   const [deleteUpload, setDeleteUpload] = useState(false);
   const form = useForm();
   const { register, handleSubmit } = form;
 
+  const { user, setUser } = useContext(UserContext);
+
   //Methods
 
   const handleImageUpload = (data) => {
+    console.log(data);
     if (data.first_name === "") {
       delete data.first_name;
     }
     if (data.last_name === "") {
+      delete data.last_name;
+    }
+    if (data.bio === "") {
       delete data.last_name;
     }
     if (data.profile_image.length == 0) {
@@ -35,23 +46,24 @@ function EditProfileCompo() {
         const imageName = data.profile_image[0];
         const imageRef = ref(storage, `${imageName.name + v4()}`);
         uploadBytes(imageRef, imageName).then(() => {
-          getDownloadURL(imageRef).then((url) => {
-            data.profile_image[0].name = url;
-          });
+          getDownloadURL(imageRef)
+            .then((url) => {
+              data.profile_image = url;
+              localStorage.setItem("profile_image", url);
+
+              api
+                .put(`/users/edit-profile/${user.id}`, data)
+                .then(() => {
+                  setUser({ ...user, ...data });
+                  navigate("/profile");
+                })
+                .catch((err) => console.error(err));
+            })
+            .catch((err) => console.error(err));
         });
       }
     }
-    // if (imageUpload == null) return;
-    // const imageRef = ref(storage, `/${imageUpload.name + v4()}`);
-    // uploadBytes(imageRef, imageUpload).then(() => {
-    //   console.log("sent file");
-    // });
-    console.log(data.profile_image[0].name);
   };
-
-  // const handleForm = (data) => {
-  //   console.log(data);
-  // };
 
   const handleImageSelected = (e) => {
     const fileInput = e.target;
@@ -80,7 +92,7 @@ function EditProfileCompo() {
         <div>
           <input
             type="text"
-            placeholder="Aaron"
+            placeholder={user?.first_name}
             className="inputFields"
             {...register("first_name")}
           />
@@ -88,10 +100,19 @@ function EditProfileCompo() {
         <div>
           <input
             type="text"
-            placeholder="Tacker"
+            placeholder={user?.last_name}
             className="inputFields"
             {...register("last_name")}
           />
+        </div>
+        <div>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder={user.bio ? user?.bio : "Bio"}
+            className="inputField"
+            {...register("bio")}
+          ></textarea>
         </div>
         <div>
           <label htmlFor="file" className="label">
