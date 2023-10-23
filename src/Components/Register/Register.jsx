@@ -35,9 +35,13 @@ function Register() {
       });
   };
   return (
-    <div>
-      <form className="form" onSubmit={handleSubmit(createNewUser)} noValidate>
-        <div>
+    <>
+      <form
+        className="formWrapper"
+        onSubmit={handleSubmit(createNewUser)}
+        noValidate
+      >
+        <div className="formDivs">
           <input
             type="text"
             placeholder="First Name"
@@ -46,7 +50,7 @@ function Register() {
           />
           <p className="errorParagraph">{errors.first_name?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="text"
             placeholder="Last Name"
@@ -55,7 +59,7 @@ function Register() {
           />
           <p className="errorParagraph">{errors.last_name?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="email"
             placeholder="Email"
@@ -64,7 +68,7 @@ function Register() {
           />
           <p className="errorParagraph">{errors.email?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="password"
             placeholder="Password"
@@ -73,16 +77,16 @@ function Register() {
           />
           <p className="errorParagraph">{errors.password?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="text"
-            placeholder="Service Rank"
+            placeholder="Service Rank example: sgt for a sergeant"
             className="input"
             {...register("service_rank", { required: "Enter your rank" })}
           />
           <p className="errorParagraph">{errors.service_rank?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="text"
             placeholder="Institution"
@@ -91,7 +95,7 @@ function Register() {
           />
           <p className="errorParagraph">{errors.institution?.message}</p>
         </div>
-        <div>
+        <div className="formDivs">
           <input
             type="text"
             placeholder="Department"
@@ -110,7 +114,7 @@ function Register() {
           <span className="spanStyle">Login</span>
         </Link>
       </p>
-    </div>
+    </>
   );
 }
 

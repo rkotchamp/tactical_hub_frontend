@@ -62,7 +62,7 @@ function ProfilePage() {
                 <h1>{`${user?.service_rank}. ${user?.first_name} ${user?.last_name}`}</h1>
                 <div className="rank__institution">
                   <p>{user?.institution}</p>
-                  <p>{user?.department + "officer"}</p>
+                  <p>{user?.department + " officer"}</p>
                 </div>
                 <p className="bio">{user.bio ? user?.bio : "Your bio here"}</p>
               </div>
