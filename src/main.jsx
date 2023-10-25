@@ -6,14 +6,17 @@ import "./index.css";
 
 import { UserContextProvider } from "./contexts/userContext.jsx";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import { ArticleContextProvider } from "./contexts/ArticleContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <AuthContextProvider>
-          <App />
-        </AuthContextProvider>
+        <ArticleContextProvider>
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </ArticleContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>

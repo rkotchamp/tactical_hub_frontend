@@ -8,7 +8,7 @@ import UserContext from "../../contexts/UserContext";
 
 import "./NavBar.css";
 
-function NavBar({ setCreatePost }) {
+function NavBar({ setCreatePost, logOut }) {
   const { user } = useContext(UserContext);
   const navRef = useRef();
 
@@ -26,6 +26,7 @@ function NavBar({ setCreatePost }) {
               <li>Explore</li>
             </Link>
             <li onClick={setCreatePost}>Create Post</li>
+            <li onClick={logOut}>Logout</li>
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
               <FaTimes />
             </button>

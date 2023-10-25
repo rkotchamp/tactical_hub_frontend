@@ -9,47 +9,36 @@ function ChangePassword() {
     console.log(data);
   };
   return (
-    <div>
-      <form
-        className="form"
-        onSubmit={handleSubmit(handleFormSubmit)}
-        noValidate
-      >
+    <div className="edit__form_input_container">
+      <form className="formInput" onSubmit={handleSubmit(handleFormSubmit)}>
         <div>
           <input
             type="password"
             placeholder="current password"
-            className="inputField"
-            {...register("current_password", {
-              required: "Enter your old password",
-            })}
+            className="inputFields"
+            {...register("current_password")}
           />
         </div>
         <div>
           <input
             type="password"
             placeholder="new password"
-            className="inputField"
-            {...register("new_password", {
-              required: "Enter your new password",
-            })}
+            className="inputFields"
+            {...register("new_password")}
           />
         </div>
         <div>
           <input
             type="password"
-            placeholder="confirm password"
-            className="inputField"
-            {...register("confirm_password", {
-              required: "Password must match your new  password",
-            })}
+            className="inputFields"
+            placeholder="confirm new password"
+            {...register("confirm_password")}
           />
         </div>
-        <Button
-          text="change password"
-          NewclassName="btnTabLogs"
-          type="submit"
-        />
+
+        <div>
+          <Button text="Submit" type="submit" NewclassName="btnTabLogs btns" />
+        </div>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import api from "../api/api";
+// import api from "../api/api";
 
 const AuthContext = createContext();
 
@@ -12,7 +12,7 @@ export function AuthContextProvider({ children }) {
     const token = Cookies.get("user_token");
     if (token) {
       setIsAuthenticated(true);
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
   }, []);
 
