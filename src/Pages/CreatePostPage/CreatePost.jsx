@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { DevTool } from "@hookform/devtools";
 import { FaCloudUploadAlt, FaRegTrashAlt } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
-
-import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import api from "../../api/api";
+import { storage } from "../../services/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 import "./CreatePost.css";
 
 function CreatePost({ closeModal }) {
@@ -17,7 +19,33 @@ function CreatePost({ closeModal }) {
   //Functions / methods
 
   const handleFormSubmit = (data) => {
+    const date = new Date();
+    const date_posted = date.toISOString().slice(0, 19).replace("T", " ");
+    // .slice(0, 19).replace("T", " ");
+    data.date_posted = date_posted;
+    console.log((data.date_posted = date_posted));
     console.log(data);
+    if (data.image !== undefined && data.image[0]) {
+      const imageName = data.image[0];
+      const imageRef = ref(storage, `${imageName.name + v4()}`);
+      uploadBytes(imageRef, imageName).then(() => {
+        getDownloadURL(imageRef).then((url) => {
+          data.image = url;
+          const userToken = Cookies.get("user_token");
+          if (!userToken) {
+            console.error("user token is missing");
+          } else {
+            const config = {
+              headers: {
+                Authorization: `Bearer ${userToken}`,
+              },
+            };
+            api.post("/articles", data, config).then((res) => console.log(res));
+          }
+        });
+      });
+    }
+    // const userToken = Cookies.get("user_token");
   };
 
   const handleImageSelection = (e) => {
@@ -54,7 +82,7 @@ function CreatePost({ closeModal }) {
                 type="text"
                 id="subject"
                 placeholder="Title"
-                {...register("category", {
+                {...register("subject", {
                   required: "Enter a title",
                 })}
               />
