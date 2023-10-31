@@ -7,15 +7,18 @@ import "./index.css";
 import { UserContextProvider } from "./contexts/userContext.jsx";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { ArticleContextProvider } from "./contexts/ArticleContext.jsx";
+import { TotalUsersProvider } from "./contexts/TotalUsersProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
         <ArticleContextProvider>
-          <AuthContextProvider>
-            <App />
-          </AuthContextProvider>
+          <TotalUsersProvider>
+            <AuthContextProvider>
+              <App />
+            </AuthContextProvider>
+          </TotalUsersProvider>
         </ArticleContextProvider>
       </UserContextProvider>
     </BrowserRouter>

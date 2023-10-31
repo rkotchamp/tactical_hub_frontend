@@ -9,9 +9,15 @@ export const ArticleContextProvider = ({ children }) => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
-    api.get("/articles");
+    api.get("/articles").then((res) => {
+      if (res.status === 200 && res.data !== null) {
+        setPosts(res.data);
+      }
+    });
   }, []);
   return (
-    <ArticleContext.Provider value={{}}>{children}</ArticleContext.Provider>
+    <ArticleContext.Provider value={{ posts, setPosts }}>
+      {children}
+    </ArticleContext.Provider>
   );
 };

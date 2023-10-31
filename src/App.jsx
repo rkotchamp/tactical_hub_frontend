@@ -14,12 +14,14 @@ import "./App.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
+  
 
   return (
     <>
       <Routes>
         <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path='/profile/:${}' element={<ProfilePage />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/home" element={<Home />} />
         </Route>

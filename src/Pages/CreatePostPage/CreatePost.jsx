@@ -45,7 +45,7 @@ function CreatePost({ closeModal }) {
         });
       });
     }
-    // const userToken = Cookies.get("user_token");
+    
   };
 
   const handleImageSelection = (e) => {

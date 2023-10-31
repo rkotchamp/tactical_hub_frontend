@@ -27,7 +27,6 @@ function EditProfileCompo() {
   //Methods
 
   const handleImageUpload = (data) => {
-    console.log(data);
     if (data.first_name === "") {
       delete data.first_name;
     }
@@ -54,6 +53,7 @@ function EditProfileCompo() {
               api
                 .put(`/users/edit-profile/${user.id}`, data)
                 .then(() => {
+                  console.log(data);
                   setUser({ ...user, ...data });
                   navigate("/profile");
                 })

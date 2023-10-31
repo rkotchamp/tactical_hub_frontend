@@ -28,6 +28,7 @@ function Login() {
       .then((response) => {
         if (response.status === 200) {
           Cookies.set("user_token", response.data.token);
+
           let config = {
             headers: {
               Authorization: "Bearer " + response.data.token,

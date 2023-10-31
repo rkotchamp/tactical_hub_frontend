@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import ArticleContext from "../../contexts/ArticleContext";
 import { AiTwotoneEdit } from "react-icons/ai";
 import PostsOnProfilePage from "../../Components/PostsOnProfilePage/PostsOnProfilePage";
 import policing from "../../assets/articlesImage.jpg";
@@ -14,12 +14,14 @@ import LoadingSpinner from "../../Components/LoaderSpinner/LoadingSpinner";
 import "./ProfilePage.css";
 
 function ProfilePage() {
+  // HOOKS
   const [togglePost, setTogglePost] = useState(true);
   const [toggleSave, setToggleSave] = useState(false);
   const [openModalProfile, setOpenModalProfile] = useState(false);
-
+  const { posts, setPosts } = useContext(ArticleContext);
   const { user, isLoading } = useContext(UserContext);
 
+  // Methods
   const handleTogglePost = () => {
     setTogglePost(true);
     setToggleSave(false);
@@ -92,9 +94,11 @@ function ProfilePage() {
               </div>
               {togglePost && (
                 <div className="usersPosts">
-                  <PostsOnProfilePage img={policing} />
-                  <PostsOnProfilePage img={policing} />
-                  <PostsOnProfilePage img={policing} />
+                  {posts.map((post) => {
+                    return post.user_id === user.id ? (
+                      <PostsOnProfilePage img={post.image} key={post.id} />
+                    ) : null;
+                  })}
 
                   <PostsOnProfilePage svgImg={addPlus} click={openModalPop} />
                 </div>

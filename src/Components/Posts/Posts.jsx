@@ -6,35 +6,44 @@ import { FaShare, FaRegComment } from "react-icons/fa";
 import { AiTwotoneLike } from "react-icons/ai";
 import { CiBookmark } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import AllUsersContext from "../../contexts/AllUsersContext";
+import ArticleContext from "../../contexts/ArticleContext";
 import "./Posts.css";
 
-function Posts() {
+function Posts({
+  fullNameAndRank,
+  UserInstitution,
+  postImage,
+  postContent,
+  avatar,
+}) {
+  const { totalUsers } = useContext(AllUsersContext);
+  const { posts } = useContext(ArticleContext);
+
+  // const[ postUser,setPostUser]=useState()
+  // console.log(totalUsers);
   return (
     <div className="postContainer">
       <div className="imageAndName">
-        <Link to="/profile">
-          <div className="postsProfile">
-            <AvatarProfile avatar={policeOfficer} />
-            <div className="nameAndInstitution">
-              <h5>Sgt. George Sam</h5>
-              <p>German Air Force</p>
+        {totalUsers.map((user, i) => {
+          <Link to={`/profile/:${user.id}`} key={i}>
+            <div className="postsProfile">
+              <AvatarProfile avatar={avatar} />
+              <div className="nameAndInstitution">
+                <h5>{fullNameAndRank}</h5>
+                <p>{UserInstitution}</p>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>;
+        })}
         <SlOptionsVertical />
       </div>
       <div className="articleImages">
-        <img src={articleImage} alt="" />
+        <img src={postImage} alt="" />
       </div>
       <div className="articleText">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed et
-          perspiciatis suscipit cupiditate vel explicabo voluptatibus. Optio
-          praesentium nemo architecto iste quia modi sed provident molestias
-          quae, laudantium alias maiores, nobis, temporibus cupiditate? Ex
-          dolore ipsa vero minus, quod nam maiores id voluptates, assumenda
-          ducimus asperiores voluptatum impedit, perferendis maxime?
-        </p>
+        <p>{postContent}</p>
         <div className="interactions">
           <div className="socialInteractions">
             <AiTwotoneLike />
