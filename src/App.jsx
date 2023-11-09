@@ -10,22 +10,24 @@ import { useContext } from "react";
 import AuthContext from "./contexts/AuthContext";
 import ProtectedRoute from "./Routes/ProtectedRoutes";
 import Logout from "./Components/Logout.jsx/Logout";
+import UsersPage from "../src/Pages/ProfilePage/UsersPage/UsersPage";
+import LandingPage from "./Components/LandingPage/LandingPage";
 import "./App.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
-  
 
   return (
     <>
       <Routes>
         <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path='/profile/:${}' element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<UsersPage />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/home" element={<Home />} />
         </Route>
 
+        <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/login" element={<LoginPage />} />

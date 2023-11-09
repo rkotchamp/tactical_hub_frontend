@@ -9,51 +9,67 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import AllUsersContext from "../../contexts/AllUsersContext";
 import ArticleContext from "../../contexts/ArticleContext";
+import UserContext from "../../contexts/userContext";
 import "./Posts.css";
 
-function Posts({
-  fullNameAndRank,
-  UserInstitution,
-  postImage,
-  postContent,
-  avatar,
-}) {
+function Posts() {
   const { totalUsers } = useContext(AllUsersContext);
   const { posts } = useContext(ArticleContext);
+  const { user } = useContext(UserContext);
+  // console.log(totalUsers);
 
   // const[ postUser,setPostUser]=useState()
   // console.log(totalUsers);
   return (
-    <div className="postContainer">
-      <div className="imageAndName">
-        {totalUsers.map((user, i) => {
-          <Link to={`/profile/:${user.id}`} key={i}>
-            <div className="postsProfile">
-              <AvatarProfile avatar={avatar} />
-              <div className="nameAndInstitution">
-                <h5>{fullNameAndRank}</h5>
-                <p>{UserInstitution}</p>
+    <>
+      {posts &&
+        posts
+          .slice()
+          .reverse()
+          .map((post, index) => {
+            const users = totalUsers.find((u) => u.id === post.user_id);
+            return (
+              <div className="postContainer" key={post.id}>
+                <div className="imageAndName">
+                  <Link
+                    to={
+                      user.id === users.id ? "/profile" : `/profile/${users.id}`
+                    }
+                    key={users.id}
+                  >
+                    <div className="postsProfile">
+                      <AvatarProfile
+                        avatar={`${
+                          users.profile_image ? users.profile_image : avatar
+                        }`}
+                      />
+                      <div className="nameAndInstitution">
+                        <h5>{`${users.service_rank}. ${users.first_name} ${users.last_name}`}</h5>
+                        <p>{users?.institution}</p>
+                      </div>
+                    </div>
+                  </Link>
+                  ;
+                  <SlOptionsVertical />
+                </div>
+                <div className="articleImages">
+                  <img src={post.image} alt={post.subject} />
+                </div>
+                <div className="articleText">
+                  <p>{post.content}</p>
+                  <div className="interactions">
+                    <div className="socialInteractions">
+                      <AiTwotoneLike />
+                      <FaRegComment />
+                      <FaShare />
+                    </div>
+                    <CiBookmark />
+                  </div>
+                </div>
               </div>
-            </div>
-          </Link>;
-        })}
-        <SlOptionsVertical />
-      </div>
-      <div className="articleImages">
-        <img src={postImage} alt="" />
-      </div>
-      <div className="articleText">
-        <p>{postContent}</p>
-        <div className="interactions">
-          <div className="socialInteractions">
-            <AiTwotoneLike />
-            <FaRegComment />
-            <FaShare />
-          </div>
-          <CiBookmark />
-        </div>
-      </div>
-    </div>
+            );
+          })}
+    </>
   );
 }
 

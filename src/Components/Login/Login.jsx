@@ -13,6 +13,7 @@ function Login() {
   //useContext
   const { setUser } = useContext(UserContext);
   const { setIsAuthenticated } = useContext(AuthContext);
+  const [loginError, setLoginError] = useState("");
 
   //UseForm
   const form = useForm();
@@ -44,18 +45,22 @@ function Login() {
                 Cookies.get("user_token");
                 navigate("/home");
               } else {
-                console.error("Error while fetching data".res.status);
+                setLoginError("Error while fetching data");
+                console.error("Error while fetching data", res.status);
               }
             })
             .catch((err) => {
               console.error("Error during data request", err);
             });
+        } else if (response.status === 401) {
+          setLoginError("This email or password is not registered");
         } else {
           console.error("Login Failed", response.status);
         }
       })
       .catch((err) => {
         console.error("Login request Error", err);
+        setLoginError("An error occurred while logging user");
       });
   };
   return (
@@ -66,9 +71,9 @@ function Login() {
             type="email"
             placeholder="Email"
             className="input"
-            {...register("email", { required: "Email is invalid" })}
+            {...register("email", { required: "Invalid email address" })}
           />
-          <p>{errors.email?.message}</p>
+          <p className="errLog">{errors.email?.message}</p>
         </div>
 
         <div>
@@ -78,7 +83,8 @@ function Login() {
             className="input"
             {...register("password", { required: "Password is incorrect" })}
           />
-          <p className="errLog">{errors.email?.message}</p>
+          <p className="errLog">{errors.password?.message}</p>
+          <p className="errLog">{loginError ? loginError : null}</p>
         </div>
         <Button type="submit" NewclassName="btnTab" text="Login" />
       </form>

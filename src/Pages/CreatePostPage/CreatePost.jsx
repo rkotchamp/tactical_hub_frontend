@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
 import { FaCloudUploadAlt, FaRegTrashAlt } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
 import Cookies from "js-cookie";
@@ -7,6 +7,8 @@ import api from "../../api/api";
 import { storage } from "../../services/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import ArticleContext from "../../contexts/ArticleContext";
+import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
 
 function CreatePost({ closeModal }) {
@@ -14,7 +16,13 @@ function CreatePost({ closeModal }) {
   const [imageSelection, setImageSelection] = useState("Upload image");
   const [upload, setUpload] = useState(true);
   const form = useForm();
-  const { register, control, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState } = form;
+
+  const overlayRef = useRef();
+  const postRef = useRef();
+  const navigate = useNavigate();
+
+  const { setPosts } = useContext(ArticleContext);
 
   //Functions / methods
 
@@ -23,8 +31,7 @@ function CreatePost({ closeModal }) {
     const date_posted = date.toISOString().slice(0, 19).replace("T", " ");
     // .slice(0, 19).replace("T", " ");
     data.date_posted = date_posted;
-    console.log((data.date_posted = date_posted));
-    console.log(data);
+
     if (data.image !== undefined && data.image[0]) {
       const imageName = data.image[0];
       const imageRef = ref(storage, `${imageName.name + v4()}`);
@@ -40,12 +47,14 @@ function CreatePost({ closeModal }) {
                 Authorization: `Bearer ${userToken}`,
               },
             };
-            api.post("/articles", data, config).then((res) => console.log(res));
+            api.post("/articles", data, config).then((res) => {
+              setPosts((prevPosts) => [...prevPosts, res]);
+              console.log(res);
+            });
           }
         });
       });
     }
-    
   };
 
   const handleImageSelection = (e) => {
@@ -65,11 +74,15 @@ function CreatePost({ closeModal }) {
     theFile.value = null;
     setImageSelection("Upload image");
     setUpload(true);
+    navigate("/home");
   };
 
+  // window.addEventListener("click", (e) => {
+  // if(e.target === overlayRef.current){}
+  // });
   return (
-    <div className="create__post__container">
-      <div className="main__post__body">
+    <div className="create__post__container" ref={overlayRef}>
+      <div className="main__post__body" ref={postRef}>
         <button className="exit" onClick={closeModal}>
           &times;
         </button>
@@ -145,7 +158,6 @@ function CreatePost({ closeModal }) {
             </div>
           </div>
         </form>
-        {/* <DevTool control={control} /> */}
       </div>
     </div>
   );

@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Outlet, Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({
-  children,
-  isAllowed,
-  redirectPath = "/register",
-}) => {
+const ProtectedRoute = ({ children, isAllowed, redirectPath = "/" }) => {
   if (!isAllowed) {
     return <Navigate to={redirectPath} />;
   }

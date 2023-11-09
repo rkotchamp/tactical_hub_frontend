@@ -16,8 +16,8 @@ function Home() {
   const { posts } = useContext(ArticleContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [logoutVisible, setLogoutVisible] = useState(false);
-  console.log(posts);
-  console.log(totalUsers);
+  // console.log(posts);
+  // console.log(totalUsers);
 
   //functions/methods
   const openModal = () => {
@@ -46,19 +46,22 @@ function Home() {
         <div className="post">
           <NewPosts openModalUp={openModal} />
           <div className="articlePosts">
-            {posts.map((post) => {
-              const user = totalUsers.find((u) => u.id === post.user_id);
-              return (
-                <Posts
-                  fullNameAndRank={`${user.service_rank}. ${user.first_name} ${user.last_name}`}
-                  UserInstitution={user.institution}
-                  postImage={post.image}
-                  postContent={post.content}
-                  avatar={post.image}
-                  key={post.id}
-                />
-              );
-            })}
+            {/* {posts
+              .slice()
+              .reverse()
+              .map((post) => {
+                const user = totalUsers.find((u) => u.id === post.user_id);
+                return ( */}
+            <Posts
+            // fullNameAndRank={`${user.service_rank}. ${user.first_name} ${user.last_name}`}
+            // UserInstitution={user.institution}
+            // postImage={post.image}
+            // postContent={post.content}
+            // avatar={post.image}
+            // key={post.id}
+            />
+            {/* );
+              })} */}
           </div>
         </div>
         <ArticleSidesContainer />

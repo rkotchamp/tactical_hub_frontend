@@ -11,7 +11,7 @@ import "./NavBar.css";
 function NavBar({ setCreatePost, logOut }) {
   const { user } = useContext(UserContext);
   const navRef = useRef();
-
+  const Menus = ["Profile", "logout", "about user"];
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
@@ -38,6 +38,13 @@ function NavBar({ setCreatePost, logOut }) {
         <Link to="/profile">
           <AvatarProfile avatar={user ? user?.profile_image : null} />
         </Link>
+        {/* <div className="dropdown">
+          <ul>
+            {Menus.map((menu) => {
+              <li key={menu}>{menu}</li>;
+            })}
+          </ul>
+        </div> */}
         <button className="nav-btn " onClick={showNavBar}>
           <FaBars />
         </button>

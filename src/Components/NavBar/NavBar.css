@@ -50,6 +50,12 @@ li:hover {
   opacity: 0;
 }
 
+.dropdown {
+  background-color: #fff;
+  padding: 4px;
+  width: 52px;
+}
+
 @media only screen and (max-width: 600px) {
   .nav-btn {
     visibility: visible;

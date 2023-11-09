@@ -12,9 +12,7 @@ function RegisterPage() {
           <h1>Register Form</h1>
           <Register />
         </div>
-        <h1 className="boldText">
-          <span>Be</span> Confidential!
-        </h1>
+        <h1 className="boldText">{/* <span>Be</span> Confidential! */}</h1>
       </div>
     </div>
   );

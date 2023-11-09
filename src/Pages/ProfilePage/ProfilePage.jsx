@@ -94,11 +94,14 @@ function ProfilePage() {
               </div>
               {togglePost && (
                 <div className="usersPosts">
-                  {posts.map((post) => {
-                    return post.user_id === user.id ? (
-                      <PostsOnProfilePage img={post.image} key={post.id} />
-                    ) : null;
-                  })}
+                  {posts
+                    .slice()
+                    .reverse()
+                    .map((post) => {
+                      return post.user_id === user.id ? (
+                        <PostsOnProfilePage img={post.image} key={post.id} />
+                      ) : null;
+                    })}
 
                   <PostsOnProfilePage svgImg={addPlus} click={openModalPop} />
                 </div>

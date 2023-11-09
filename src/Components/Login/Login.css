@@ -6,3 +6,8 @@
 a {
   text-decoration: none;
 }
+
+.errLog {
+  color: red;
+  font-size: 11px;
+}
